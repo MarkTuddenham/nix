@@ -121,9 +121,10 @@
     grbd = "git fetch origin develop:develop ; git rebase develop";
     gs = "git status"; gundo = "git reset HEAD~"; gshow = "git show"; gshowh = "git show HEAD";
     gwip = "git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m \"[WIP]: $(date)\"";
-    gwt = "git worktree";
+    gwt  = "git worktree";
     gwta = "(){ git worktree add $1 $1;}";
     gwtb = "(){ git worktree add -b $1 $1;}";
+    gclb = "__git_worktree_clone";
 
     clippy      = " cargo clippy --all-features -- -W clippy::suspicious -W clippy::complexity -W clippy::perf -W clippy::style -W clippy::pedantic -W clippy::correctness";
     clippy-fix  = "cargo clippy --all-features --fix --allow-dirty -- -W clippy::suspicious -W clippy::complexity -W clippy::perf -W clippy::style -W clippy::pedantic -W clippy::correctness && cargo fmt";
