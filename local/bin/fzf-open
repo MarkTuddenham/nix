@@ -1,0 +1,41 @@
+#!/bin/bash
+search_paths=(~/Documents ~/Downloads ~/dev )
+ignore_paths=(
+# Data 
+	datasets
+# Python
+	venv
+# Git
+	.git
+	hooks
+	refs
+# Rust
+	semver-checks
+	"*deps"
+	.fingerprint
+# Other
+	"*cache*"
+	node_modules
+	build
+	_build
+	".DS_Store"
+	"._.DS_Store"
+)
+
+FILE=$(fd . ${search_paths[@]} -HpaL -t f -t l ${ignore_paths[@]/#/-E } --no-ignore-vcs | fzf --algo v1)
+
+cd /
+clear
+
+if [ ! -z "$FILE" ]; then
+
+	if [[ $FILE == *.sh ]]; then
+		read -n 1 -p "Run $FILE? [y/N]" choice
+		if [[ $choice =~ ^[Yy]$ ]]; then
+			nohup /usr/bin/env bash "$FILE" &>/dev/null &
+			exit
+		fi
+	fi
+
+	nohup handlr open "$FILE" &>/dev/null &
+fi

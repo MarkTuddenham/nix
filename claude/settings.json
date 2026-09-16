@@ -1,0 +1,21 @@
+{
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "xhigh",
+  "model": "sonnet",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); DIR=$(echo \"$INPUT\" | jq -r '.cwd // \".\"' | xargs basename); MSG=$(echo \"$INPUT\" | jq -r '.message // \"Claude needs your input\"'); CC_TITLE=\"Claude · $DIR\" CC_MSG=\"$MSG\" osascript -e 'display notification (system attribute \"CC_MSG\") with title (system attribute \"CC_TITLE\") sound name \"Glass\"'"
+          }
+        ]
+      }
+    ]
+  }
+}

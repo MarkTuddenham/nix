@@ -1,0 +1,24 @@
+**/.DS_store
+**/.directory
+.directory
+todo.md
+.env
+
+# python
+venv/
+*.bk
+**/__pycache__/
+**/.mypy_cache/
+
+# nix
+"result"
+
+# IntelliJ
+".idea"
+
+# Vim
+"*~"
+"*.swp"
+
+# AIs
+CLADUE.md
